@@ -15,7 +15,6 @@ export const generateRandomCoordinates = (): { x: number; y: number } => {
 };
 
 export const attack = (ws: IWebSocket, data: string, random: boolean = false) => {
-
     const parseData = JSON.parse(JSON.parse(data).data);
     const roomId = Number(parseData.gameId.slice(0, 1));
     const existGameInstance: gameParams = gameInstances.find(game => game.roomId === roomId) as gameParams;
@@ -41,7 +40,6 @@ export const attack = (ws: IWebSocket, data: string, random: boolean = false) =>
             wssocket.send(JSON.stringify(response));
         });
     }
-
     if (!random) {
         if (activePlayer !== parseData.indexPlayer) {
             console.log('Next player goes');
@@ -61,7 +59,6 @@ export const attack = (ws: IWebSocket, data: string, random: boolean = false) =>
             wssocket.send(JSON.stringify(response));
         });
     }
-
     if (askIfGameFinished(existGameInstance)) {
         const winnerId = getWinnerId(existGameInstance);
         const response = {
@@ -126,7 +123,6 @@ export const getAttack = (indexPlayer: number, x: number, y: number, instanceGam
         shipCoordinates: coordinates,
         nextPlayer: instanceGame.currentPlayerId,
     };
-
     activePlayer = instanceGame.currentPlayerId;
     instanceGame.wssockets.forEach((socket) => {
         socket.send(JSON.stringify({

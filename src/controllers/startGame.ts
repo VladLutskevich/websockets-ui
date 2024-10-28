@@ -1,7 +1,6 @@
 import { gameInstances } from '../store/store';
 import { IAddShipsData, IShipPosition, ITurn, IWebSocket, IShip, IPosition, gameParams } from '../models/models';
 
-
 const getCoordinates = (data: IAddShipsData) => {
     const shipCoordinates: IPosition[] = [];
     data.ships.forEach((ship: IShip) => {
@@ -25,7 +24,6 @@ const getCoordinates = (data: IAddShipsData) => {
                 shipCoordinates.push(pos);
             }
         }
-
     });
     return shipCoordinates;
 };
@@ -41,19 +39,15 @@ export const getDataShip = (data: IAddShipsData) => {
 };
 
 export const startGame = (ws: IWebSocket, resp: string) => {
-
     const parseData = JSON.parse(JSON.parse(resp).data);
     const roomId = Number(parseData.gameId.slice(0, 1));
     const existGameInstance: gameParams = gameInstances.find(game => game.roomId === roomId) as gameParams;
-
     const ships = getDataShip(parseData);
-
     if (parseData.indexPlayer === 0) {
         existGameInstance.firstPlayerShips = ships;
     } else if (parseData.indexPlayer === 1) {
         existGameInstance.secondPlayerShips = ships;
     }
-
     const response = {
         type: 'start_game',
         data: JSON.stringify({
@@ -70,7 +64,6 @@ export function setActivePlayer(instanceGame: gameParams, changePlayer: boolean 
     if (changePlayer) {
         instanceGame.currentPlayerId = instanceGame.currentPlayerId === 0 ? 1 : 0;
     }
-
     const response: ITurn = {
         type: 'turn',
         data: JSON.stringify({
@@ -78,7 +71,6 @@ export function setActivePlayer(instanceGame: gameParams, changePlayer: boolean 
         }),
         id: 0,
     };
-
     instanceGame.wssockets.forEach((wssocket) => {
         wssocket.send(JSON.stringify(response));
     });

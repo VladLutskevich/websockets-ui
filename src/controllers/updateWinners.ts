@@ -10,7 +10,6 @@ export const updateWinners = () => {
         }
         return winnersTable;
     });
-
     if (winnersTable) {
         const response = {
             type: 'update_winners',

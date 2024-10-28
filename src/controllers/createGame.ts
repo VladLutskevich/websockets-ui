@@ -2,9 +2,7 @@ import { gameParams, IWebSocket } from '../models/models';
 import { currentPlayerId, gameCounter, gameInstances } from '../store/store';
 
 export const createGame = (id: number, ws: IWebSocket) => {
-
     const existGameInstance: gameParams = gameInstances.find(game => game.roomId === id) as gameParams;
-
     if (existGameInstance) {
         existGameInstance.wssockets.push(ws);
         const gameId = id + ':' + existGameInstance.gameCounter;
