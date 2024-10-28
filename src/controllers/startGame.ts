@@ -1,5 +1,5 @@
-import { gameParams, gameInstances } from '../store/store';
-import { IAddShipsData, IShipPosition, ITurn, IWebSocket, IShip, IPosition } from '../models/models';
+import { gameInstances } from '../store/store';
+import { IAddShipsData, IShipPosition, ITurn, IWebSocket, IShip, IPosition, gameParams } from '../models/models';
 
 
 const getCoordinates = (data: IAddShipsData) => {

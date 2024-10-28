@@ -1,5 +1,5 @@
-import { IWebSocket } from '../models/models';
-import { currentPlayerId, gameCounter, gameInstances, gameParams } from '../store/store';
+import { gameParams, IWebSocket } from '../models/models';
+import { currentPlayerId, gameCounter, gameInstances } from '../store/store';
 
 export const createGame = (id: number, ws: IWebSocket) => {
 

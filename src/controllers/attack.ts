@@ -1,6 +1,6 @@
-import { gameInstances, gameParams, Players } from '../store/store';
+import { gameInstances, Players } from '../store/store';
 import { setActivePlayer } from '../controllers/startGame';
-import { IWebSocket, IAttakaResult, IPosition, IPositionXY, IShipPosition, } from '../models/models';
+import { IWebSocket, IAttakaResult, IPosition, IPositionXY, IShipPosition, gameParams, } from '../models/models';
 import { clients } from '../websocket';
 import { updateWinners } from './updateWinners';
 

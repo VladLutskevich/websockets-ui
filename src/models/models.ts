@@ -87,5 +87,14 @@ export interface IWinner {
     wins: number,
 }
 
+export interface gameParams {
+    roomId: number,
+    wssockets: IWebSocket[],
+    gameCounter: number,
+    firstPlayerShips: any,
+    secondPlayerShips: any,
+    currentPlayerId: number,
+}
+
 export type IShipType = 'small' | 'medium' | 'large' | 'huge';
 export type IPositionType = 'miss' | 'killed' | 'shot';
